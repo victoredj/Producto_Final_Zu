@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monserath Astudillo</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0f4f0;
+      font-family: 'Georgia', serif;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 4px solid #4a7c4e;
+      border-radius: 12px;
+      padding: 40px;
+      width: 680px;
+      box-shadow: 0 8px 32px rgba(74, 124, 78, 0.15);
+    }
+
+    /* ── Header: nombre + retrato ── */
+    .header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 36px;
+    }
+
+    .header h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: 0.5px;
+      flex: 1;
+      padding-right: 20px;
+    }
+
+    .retrato {
+      width: 170px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      flex-shrink: 0;
+    }
+
+    .retrato-placeholder {
+      width: 170px;
+      height: 200px;
+      background: #d4e8d4;
+      border: 2px dashed #4a7c4e;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #4a7c4e;
+      font-size: 0.8rem;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    /* ── Grid de actividades ── */
+    .actividades {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .actividad {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .actividad img {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+    }
+
+    .actividad-placeholder {
+      width: 150px;
+      height: 150px;
+      background: #f5f5f5;
+      border: 2px dashed #aaa;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-size: 0.75rem;
+    }
+
+    .actividad-label {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #1a1a1a;
+      text-transform: uppercase;
+    }
+
+    /* Actividad 3 ocupa las dos columnas centrado */
+    .actividad.centro {
+      grid-column: 1 / -1;
+    }
+
+    /* Separador decorativo */
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: #4a7c4e;
+      border-radius: 2px;
+      margin: 0 auto 28px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <!-- Nombre + Retrato -->
+    <div class="header">
+      <h1>Monserath Astudillo</h1>
+      <img
+        src="img/monse.png"
+        alt="Retrato de Carlota Jaramillo"
+        class="retrato"
+        onerror="this.outerHTML='<div class=\'retrato-placeholder\'>Imagen<br>retrato.png</div>'"
+      />
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Actividades -->
+    <div class="actividades">
+
+      <div class="actividad">
+        <img
+          src="img/actividad1.png"
+          alt="QR Actividad 1"
+          onerror="this.outerHTML='<div class=\'actividad-placeholder\'>actividad1.png</div>'"
+        />
+        <span class="actividad-label">360</span>
+      </div>
+
+      <div class="actividad">
+        <img
+          src="img/actividad2.png"
+          alt="QR Actividad 2"
+          onerror="this.outerHTML='<div class=\'actividad-placeholder\'>actividad2.png</div>'"
+        />
+        <span class="actividad-label">Post It</span>
+      </div>
+
+      <div class="actividad centro">
+        <img
+          src="img/actividad3.png"
+          alt="QR Actividad 3"
+          onerror="this.outerHTML='<div class=\'actividad-placeholder\'>actividad3.png</div>'"
+        />
+        <span class="actividad-label">Entrevistas</span>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
