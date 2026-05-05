@@ -16,20 +16,110 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #f0f4f0;
+      background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 50%, #e0f2f1 100%);
       font-family: 'Georgia', serif;
       padding: 16px;
+      overflow-x: hidden;
+      position: relative;
     }
 
+    /* ── Figuras decorativas de fondo ── */
+    .bg-shapes {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      opacity: 0.18;
+    }
+
+    /* Círculos grandes */
+    .c1 { width: 220px; height: 220px; border-radius: 50%; background: #4a7c4e; top: -60px; left: -60px; }
+    .c2 { width: 160px; height: 160px; border-radius: 50%; background: #81c784; bottom: -40px; right: -40px; }
+    .c3 { width: 90px;  height: 90px;  border-radius: 50%; background: #2e7d32; top: 40%;  left: 3%; }
+    .c4 { width: 60px;  height: 60px;  border-radius: 50%; background: #a5d6a7; top: 15%;  right: 5%; }
+    .c5 { width: 130px; height: 130px; border-radius: 50%; background: #388e3c; bottom: 10%; left: 8%; }
+
+    /* Cuadrados rotados (rombos) */
+    .sq1 { width: 70px;  height: 70px;  background: #66bb6a; transform: rotate(45deg); top: 20%;  left: 10%; }
+    .sq2 { width: 50px;  height: 50px;  background: #4a7c4e; transform: rotate(30deg); bottom: 25%; right: 8%; }
+    .sq3 { width: 40px;  height: 40px;  background: #81c784; transform: rotate(20deg); top: 70%;  left: 2%; }
+
+    /* Triángulos SVG */
+    .tri1 { top: 5%;   right: 12%; width: 80px; }
+    .tri2 { bottom: 8%; left: 12%; width: 60px; }
+    .tri3 { top: 55%;  right: 4%;  width: 50px; }
+
+    /* Puntos decorativos */
+    .dots {
+      position: absolute;
+      display: grid;
+      grid-template-columns: repeat(5, 12px);
+      gap: 10px;
+      opacity: 0.15;
+    }
+    .dots span {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #4a7c4e;
+      display: block;
+    }
+    .dots-a { top: 30%; right: 2%; }
+    .dots-b { bottom: 20%; left: 2%; }
+
+    /* Líneas decorativas */
+    .line {
+      position: absolute;
+      height: 3px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, transparent, #4a7c4e, transparent);
+      opacity: 0.2;
+    }
+    .line1 { width: 180px; top: 12%; left: -20px; transform: rotate(-15deg); }
+    .line2 { width: 140px; bottom: 18%; right: -10px; transform: rotate(10deg); }
+
+    /* ── Tarjeta ── */
     .card {
+      position: relative;
+      z-index: 1;
       background: #ffffff;
       border: 4px solid #4a7c4e;
-      border-radius: 12px;
+      border-radius: 16px;
       padding: 32px;
       width: 100%;
       max-width: 680px;
-      box-shadow: 0 8px 32px rgba(74, 124, 78, 0.15);
+      box-shadow: 0 12px 40px rgba(74, 124, 78, 0.2);
     }
+
+    /* Esquinas decorativas de la tarjeta */
+    .card::before,
+    .card::after {
+      content: '';
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #4a7c4e;
+      opacity: 0.7;
+    }
+    .card::before { top: -10px; left: -10px; }
+    .card::after  { bottom: -10px; right: -10px; }
+
+    .card-corner-tr,
+    .card-corner-bl {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #81c784;
+      opacity: 0.6;
+    }
+    .card-corner-tr { top: -7px; right: -7px; }
+    .card-corner-bl { bottom: -7px; left: -7px; }
 
     /* ── Header: nombre + retrato ── */
     .header {
@@ -40,22 +130,40 @@
       margin-bottom: 28px;
     }
 
-    .header h1 {
-      font-size: clamp(1.6rem, 5vw, 2.6rem);
-      font-weight: 700;
-      color: #1a1a1a;
-      letter-spacing: 0.5px;
+    .header-text {
       flex: 1;
       min-width: 0;
     }
+
+    .header h1 {
+      font-size: clamp(1.6rem, 5vw, 2.6rem);
+      font-weight: 700;
+      color: #2e7d32;
+      letter-spacing: 0.5px;
+    }
+
+    /* Pequeña barra de color bajo el nombre */
+    .name-bar {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .name-bar span {
+      height: 6px;
+      border-radius: 3px;
+    }
+    .name-bar .b1 { width: 40px; background: #4a7c4e; }
+    .name-bar .b2 { width: 20px; background: #81c784; }
+    .name-bar .b3 { width: 12px; background: #c8e6c9; }
 
     .retrato {
       width: clamp(110px, 28vw, 170px);
       height: clamp(130px, 33vw, 200px);
       object-fit: cover;
-      border-radius: 4px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
       flex-shrink: 0;
+      border: 3px solid #c8e6c9;
     }
 
     .retrato-placeholder {
@@ -63,7 +171,7 @@
       height: clamp(130px, 33vw, 200px);
       background: #d4e8d4;
       border: 2px dashed #4a7c4e;
-      border-radius: 4px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -71,6 +179,26 @@
       font-size: 0.8rem;
       text-align: center;
       flex-shrink: 0;
+    }
+
+    /* ── Separador con figura ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 auto 24px;
+      justify-content: center;
+    }
+    .divider-line {
+      width: 60px; height: 3px;
+      background: #4a7c4e;
+      border-radius: 2px;
+    }
+    .divider-diamond {
+      width: 10px; height: 10px;
+      background: #4a7c4e;
+      transform: rotate(45deg);
+      border-radius: 2px;
     }
 
     /* ── Grid de actividades ── */
@@ -85,17 +213,37 @@
       flex-direction: column;
       align-items: center;
       gap: 10px;
+      background: #f9fbe7;
+      border-radius: 12px;
+      padding: 16px 10px;
+      border: 2px solid #c8e6c9;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Círculo decorativo en esquina de cada actividad */
+    .actividad::before {
+      content: '';
+      position: absolute;
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      background: #e8f5e9;
+      top: -18px; right: -18px;
+      border: 2px solid #a5d6a7;
     }
 
     .actividad img {
-      width: clamp(100px, 35vw, 150px);
-      height: clamp(100px, 35vw, 150px);
+      width: clamp(100px, 35vw, 140px);
+      height: clamp(100px, 35vw, 140px);
       object-fit: contain;
+      border-radius: 4px;
+      position: relative;
+      z-index: 1;
     }
 
     .actividad-placeholder {
-      width: clamp(100px, 35vw, 150px);
-      height: clamp(100px, 35vw, 150px);
+      width: clamp(100px, 35vw, 140px);
+      height: clamp(100px, 35vw, 140px);
       background: #f5f5f5;
       border: 2px dashed #aaa;
       border-radius: 4px;
@@ -105,67 +253,107 @@
       color: #888;
       font-size: 0.75rem;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     .actividad-label {
       font-size: clamp(0.8rem, 2.5vw, 1rem);
       font-weight: 700;
       letter-spacing: 1.5px;
-      color: #1a1a1a;
+      color: #2e7d32;
       text-transform: uppercase;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
-    /* Actividad 3 ocupa las dos columnas centrado */
     .actividad.centro {
       grid-column: 1 / -1;
     }
 
-    /* Separador decorativo */
-    .divider {
-      width: 60px;
-      height: 3px;
-      background: #4a7c4e;
-      border-radius: 2px;
-      margin: 0 auto 24px;
-    }
-
     @media (max-width: 400px) {
-      .card {
-        padding: 20px 16px;
-      }
+      .card { padding: 20px 16px; }
       .header {
         flex-direction: column;
         align-items: center;
         text-align: center;
       }
-      .header h1 {
-        font-size: 1.8rem;
-      }
-      .retrato,
-      .retrato-placeholder {
-        width: 140px;
-        height: 165px;
-      }
+      .name-bar { justify-content: center; }
+      .header h1 { font-size: 1.8rem; }
+      .retrato, .retrato-placeholder { width: 140px; height: 165px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Figuras decorativas de fondo -->
+  <div class="bg-shapes">
+    <div class="shape c1"></div>
+    <div class="shape c2"></div>
+    <div class="shape c3"></div>
+    <div class="shape c4"></div>
+    <div class="shape c5"></div>
+    <div class="shape sq1"></div>
+    <div class="shape sq2"></div>
+    <div class="shape sq3"></div>
+
+    <!-- Triángulos SVG -->
+    <svg class="shape tri1" viewBox="0 0 100 87" fill="#4a7c4e">
+      <polygon points="50,0 100,87 0,87"/>
+    </svg>
+    <svg class="shape tri2" viewBox="0 0 100 87" fill="#81c784">
+      <polygon points="50,87 100,0 0,0"/>
+    </svg>
+    <svg class="shape tri3" viewBox="0 0 100 87" fill="#388e3c">
+      <polygon points="50,0 100,87 0,87"/>
+    </svg>
+
+    <!-- Puntos -->
+    <div class="dots dots-a">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="dots dots-b">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="line line1"></div>
+    <div class="line line2"></div>
+  </div>
+
+  <!-- Tarjeta principal -->
   <div class="card">
+    <div class="card-corner-tr"></div>
+    <div class="card-corner-bl"></div>
 
     <!-- Nombre + Retrato -->
     <div class="header">
-      <h1>Monserath Astudillo</h1>
+      <div class="header-text">
+        <h1>Monserath Astudillo</h1>
+        <div class="name-bar">
+          <span class="b1"></span>
+          <span class="b2"></span>
+          <span class="b3"></span>
+        </div>
+      </div>
       <img
         src="img/monse.png"
-        alt="Retrato de Carlota Jaramillo"
+        alt="Retrato de Monserath Astudillo"
         class="retrato"
-        onerror="this.outerHTML='<div class=\'retrato-placeholder\'>Imagen<br>retrato.png</div>'"
+        onerror="this.outerHTML='<div class=\'retrato-placeholder\'>Imagen<br>monse.png</div>'"
       />
     </div>
 
-    <div class="divider"></div>
+    <!-- Separador decorativo -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line"></div>
+    </div>
 
     <!-- Actividades -->
     <div class="actividades">
